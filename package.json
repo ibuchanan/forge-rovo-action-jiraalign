@@ -1,0 +1,29 @@
+{
+  "name": "forge-rovo-action-jiraalign",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A sample app that defines a Jira Align action",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "scripts": {
+    "actiontypes": "tsx ./scripts/actiontypes.ts && biome format --write",
+    "build": "tsc",
+    "check": "biome check --write",
+    "clean": "rm -rf ./dist",
+    "format": "biome format --write",
+    "lint": "biome lint"
+  },
+  "dependencies": {
+    "@forge/api": "^6.0.0",
+    "wretch": "^2.11.0",
+    "znv": "^0.5.0",
+    "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2",
+    "@types/node": "22",
+    "tsx": "4",
+    "typescript": "5",
+    "yaml": "2"
+  }
+}

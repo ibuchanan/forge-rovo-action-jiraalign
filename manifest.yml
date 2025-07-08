@@ -1,0 +1,49 @@
+app:
+  id: ari:cloud:ecosystem::app/975d332a-92a9-48e2-97cc-78b6dd3c09ce
+  runtime:
+    architecture: arm64
+    memoryMB: 256
+    name: nodejs22.x
+modules:
+  rovo:agent:
+    - key: forge-rovo-action-jiraalign
+      name: Forge Rovo Jira Align Action
+      description: A simple agent to demonstrate the use of actions.
+      actions:
+        - fetch-capability
+      prompt: resource:agent-prompts;agent-instructions.md
+  action:
+    - key: fetch-capability
+      name: Fetch Capability from Jira Align
+      description: >
+        For a Jira Align site configured in env vars,
+        extract the content.
+      actionVerb: GET
+      function: fetchCapability
+      inputs:
+        capabilityId:
+          title: Capability Id
+          description: Capability Id
+          required: true
+          type: string
+  trigger:
+    - key: trigger-lifecycle
+      events:
+        - avi:forge:installed:app
+        - avi:forge:upgraded:app
+      function: lifecycle-handler
+  function:
+    - key: fetchCapability
+      handler: index.fetchContentFromCapability
+    - key: lifecycle-handler
+      handler: index.lifecycle
+    - key: trigger
+      handler: index.trigger
+  webtrigger:
+    - key: dev-trigger
+      function: trigger
+      response:
+        type: dynamic
+resources:
+  - key: agent-prompts
+    path: prompts
