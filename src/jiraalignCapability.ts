@@ -17,8 +17,11 @@ function logHttpError(err: WretchError) {
 export async function fetchContentFromCapability(
   payload: FetchContentFromCapabilityPayload,
 ) {
-  const url = constructUrl(config.JIRA_ALIGN_SITE_URL, Resources.Capability);
-  appendPath(url, payload.capabilityId);
+  const capabilityUrl = constructUrl(
+    config.JIRA_ALIGN_SITE_URL,
+    Resources.Capability,
+  );
+  const url = appendPath(capabilityUrl, payload.capabilityId);
   console.debug(`Request: Capability from ${url}`);
   try {
     const responseJson = (await w

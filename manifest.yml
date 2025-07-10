@@ -47,3 +47,8 @@ modules:
 resources:
   - key: agent-prompts
     path: prompts
+permissions:
+  external:
+    fetch:
+      backend:
+        - "*.jiraalign.com" # Allow requests to _all_ Jira Align sites. Narrow to a site, if needed.
